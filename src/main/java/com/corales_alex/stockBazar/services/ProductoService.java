@@ -34,7 +34,12 @@ public class ProductoService implements IProductoService{
 
     @Override
     public void updateProducto(Long codigoProducto, ProductoModel productoNuevo) {
-        iProductoRepository.save(productoNuevo);
+        ProductoModel productoModificar = this.getProducto(codigoProducto);
+        productoModificar.setNombre(productoNuevo.getNombre());
+        productoModificar.setMarca(productoNuevo.getMarca());
+        productoModificar.setCosto(productoNuevo.getCosto());
+        productoModificar.setCantidadDisponible(productoNuevo.getCantidadDisponible());
+        this.saveProducto(productoModificar);
     }
     
 }

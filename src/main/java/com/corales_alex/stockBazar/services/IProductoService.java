@@ -1,7 +1,6 @@
 package com.corales_alex.stockBazar.services;
 
 import java.util.List;
-import org.springframework.stereotype.Service;
 import com.corales_alex.stockBazar.models.ProductoModel;
 
 public interface IProductoService{
