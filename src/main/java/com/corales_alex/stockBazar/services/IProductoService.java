@@ -1,5 +1,9 @@
 package com.corales_alex.stockBazar.services;
 
-public interface IProductoService {
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.corales_alex.stockBazar.models.ProductoModel;
+
+public interface IProductoService extends JpaRepository<ProductoModel, Long>{
     
 }
+
