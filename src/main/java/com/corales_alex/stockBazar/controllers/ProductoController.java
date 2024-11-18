@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.services.IProductoService;
@@ -27,11 +28,13 @@ public class ProductoController {
     }
 
     @GetMapping("/")
+    @ResponseBody // ¿ Que pasa si no pongo, como se envia ?
     public List<ProductoModel> getAllProductos(){
         return iProductoService.getAllProductos();
     }
 
     @GetMapping("/{codigoProducto}")
+    @ResponseBody
     public ProductoModel getProducto(@PathVariable Long codigoProducto){
         return iProductoService.getProducto(codigoProducto);
     }
