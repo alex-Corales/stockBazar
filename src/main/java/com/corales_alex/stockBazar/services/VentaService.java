@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.corales_alex.stockBazar.dto.VentaProductoClienteDTO;
 import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.models.VentaModel;
 import com.corales_alex.stockBazar.repositorys.IVentaRepository;
@@ -73,6 +74,30 @@ public class VentaService implements IVentaService{
         }
 
         return "La sumatoria total del monto de ventas del dia es de: " + sumatoriaMontoTotal + " y la cantidad de ventas es de: " + contTotalVentas;
+    }
+
+    @Override
+    public VentaProductoClienteDTO datosDTO() {
+        
+        List<VentaModel> ventas = this.getAllVentas(); 
+        
+        VentaProductoClienteDTO datosDTO = new VentaProductoClienteDTO();
+        if(ventas.isEmpty()) return datosDTO;
+        
+        VentaModel ventaMax = ventas.get(0);
+
+
+        for (VentaModel venta : ventas){
+            if (venta.getTotal() != null && venta.getTotal() > ventaMax.getTotal()) ventaMax = venta;
+        }
+
+        datosDTO.setCodigoVenta(ventaMax.getCodigoVenta());
+        datosDTO.setTotalVenta(ventaMax.getTotal());
+        datosDTO.setCantidadProductos(ventaMax.getListaProductos().size());
+        datosDTO.setNombreCliente(ventaMax.getCliente().getNombre());
+        datosDTO.setApellidoCliente(ventaMax.getCliente().getApellido());
+        
+        return datosDTO;
     }
     
 }

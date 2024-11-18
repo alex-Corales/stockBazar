@@ -3,6 +3,7 @@ package com.corales_alex.stockBazar.services;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.corales_alex.stockBazar.dto.VentaProductoClienteDTO;
 import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.models.VentaModel;
 
@@ -14,4 +15,5 @@ public interface IVentaService {
     public void updateVenta(Long idVenta, VentaModel ventaNueva);
     public List<ProductoModel> obtenerProductosDeterminadaVenta(Long codigoVenta);
     public String obtenerSumatoriaMontoYCantidadTotalVentasDeterminadoDia(LocalDate fechaVenta);
+    public VentaProductoClienteDTO datosDTO();
 }

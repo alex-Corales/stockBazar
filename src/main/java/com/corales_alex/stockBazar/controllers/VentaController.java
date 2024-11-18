@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.corales_alex.stockBazar.dto.VentaProductoClienteDTO;
 import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.models.VentaModel;
 import com.corales_alex.stockBazar.services.IVentaService;
@@ -60,6 +61,11 @@ public class VentaController {
     @GetMapping("/{fechaVenta}")
     public String obtenerSumatoriaMontoYCantidadTotalVentasDeterminadoDia(@PathVariable LocalDate fechaVenta){
         return iVentaService.obtenerSumatoriaMontoYCantidadTotalVentasDeterminadoDia(fechaVenta);
+    }
+
+    @GetMapping("/mayor_venta")
+    public VentaProductoClienteDTO datosDTO(){
+        return iVentaService.datosDTO();
     }
     
 }
