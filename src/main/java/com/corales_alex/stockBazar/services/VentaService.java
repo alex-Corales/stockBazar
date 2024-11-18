@@ -1,9 +1,12 @@
 package com.corales_alex.stockBazar.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.models.VentaModel;
 import com.corales_alex.stockBazar.repositorys.IVentaRepository;
 
@@ -41,6 +44,11 @@ public class VentaService implements IVentaService{
         ventaAux.setListaProductos(ventaNueva.getListaProductos());
         ventaAux.setCliente(ventaNueva.getCliente());
         this.saveVenta(ventaAux);
+    }
+
+    @Override
+    public List<ProductoModel> obtenerProductosDeterminadaVenta(Long codigoVenta) {
+        return this.getVenta(codigoVenta).getListaProductos();
     }
     
 }
