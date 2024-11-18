@@ -8,6 +8,6 @@ public interface IClienteService {
     public List<ClienteModel> getAllCliente();
     public ClienteModel getCliente(Long idCliente);
     public void deleteCliente(Long idCliente);
-    public void updateCliente(Long idCliente);
+    public void updateCliente(Long idCliente, ClienteModel clienteNuevo);
 }
 
