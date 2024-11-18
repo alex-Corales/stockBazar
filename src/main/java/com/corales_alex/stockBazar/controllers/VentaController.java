@@ -1,5 +1,6 @@
 package com.corales_alex.stockBazar.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,11 @@ public class VentaController {
     @GetMapping("/productos{codigoVenta}")
     public List<ProductoModel> obtenerProductosDeterminadaVenta(@PathVariable Long codigoVenta){
         return iVentaService.obtenerProductosDeterminadaVenta(codigoVenta);
+    }
+
+    @GetMapping("/{fechaVenta}")
+    public String obtenerSumatoriaMontoYCantidadTotalVentasDeterminadoDia(@PathVariable LocalDate fechaVenta){
+        return iVentaService.obtenerSumatoriaMontoYCantidadTotalVentasDeterminadoDia(fechaVenta);
     }
     
 }

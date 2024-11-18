@@ -1,5 +1,6 @@
 package com.corales_alex.stockBazar.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,29 @@ public class VentaService implements IVentaService{
     @Override
     public List<ProductoModel> obtenerProductosDeterminadaVenta(Long codigoVenta) {
         return this.getVenta(codigoVenta).getListaProductos();
+    }
+
+    @Override
+    public String obtenerSumatoriaMontoYCantidadTotalVentasDeterminadoDia(LocalDate fechaVenta) {
+        
+        // Primero vamos a buscar las ventas de un determinado dia
+        List<VentaModel> ventaDia = new ArrayList<>();
+
+        for (VentaModel venta : this.getAllVentas()) {
+            if (venta.getFechaVenta().equals(fechaVenta)){
+                ventaDia.add(venta);
+            }
+        }
+
+        double sumatoriaMontoTotal = 0.0;
+        int contTotalVentas = 0;
+
+        for (VentaModel venta : ventaDia){
+            contTotalVentas += 1;
+            sumatoriaMontoTotal += venta.getTotal();
+        }
+
+        return "La sumatoria total del monto de ventas del dia es de: " + sumatoriaMontoTotal + " y la cantidad de ventas es de: " + contTotalVentas;
     }
     
 }
