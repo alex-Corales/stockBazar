@@ -50,4 +50,9 @@ public class ProductoController {
         iProductoService.updateProducto(codigoProducto, producto);
         return "El producto se modifico correctamente";
     }
+
+    @GetMapping("/falta_stock")
+    public List<ProductoModel> faltaStock(){
+        return iProductoService.faltaStock();
+    }
 }

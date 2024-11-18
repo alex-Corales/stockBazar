@@ -1,8 +1,11 @@
 package com.corales_alex.stockBazar.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.util.ArrayUtils;
+
 import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.repositorys.IProductoRepository;
 
@@ -40,6 +43,17 @@ public class ProductoService implements IProductoService{
         productoModificar.setCosto(productoNuevo.getCosto());
         productoModificar.setCantidadDisponible(productoNuevo.getCantidadDisponible());
         this.saveProducto(productoModificar);
+    }
+
+    @Override
+    public List<ProductoModel> faltaStock() {
+        List<ProductoModel> productos = new ArrayList<>();
+
+        for (ProductoModel produc : this.getAllProductos()){
+            if(produc.getCantidadDisponible() < 5) productos.add(produc);
+        }
+
+        return productos;
     }
     
 }

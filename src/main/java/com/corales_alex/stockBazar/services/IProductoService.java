@@ -9,5 +9,6 @@ public interface IProductoService{
     public ProductoModel getProducto(Long codigoProducto);
     public void deteleProducto(Long codigoProducto);
     public void updateProducto(Long codigoProducto, ProductoModel productoNuevo);
+    public List<ProductoModel> faltaStock();
 }
 
