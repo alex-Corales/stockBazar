@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.corales_alex.stockBazar.models.ProductoModel;
 import com.corales_alex.stockBazar.models.VentaModel;
 import com.corales_alex.stockBazar.services.IVentaService;
 
@@ -48,6 +49,11 @@ public class VentaController {
     public String updateVenta(@PathVariable Long idVenta, @RequestBody VentaModel ventaNueva){
         iVentaService.updateVenta(idVenta, ventaNueva);
         return "La venta se actualizo con exito";
+    }
+
+    @GetMapping("/productos{codigoVenta}")
+    public List<ProductoModel> obtenerProductosDeterminadaVenta(@PathVariable Long codigoVenta){
+        return iVentaService.obtenerProductosDeterminadaVenta(codigoVenta);
     }
     
 }
